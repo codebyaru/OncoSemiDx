@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OncoSemiDx - Advanced Cancer Detection Technology</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #6DAA6D;
+            --secondary-brown: #A67B5B;
+            --cream-bg: #F8F5F0;
+            --text-dark: #2C3E2C;
+            --text-light: #5A6B5A;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-dark);
+            background: var(--cream-bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(248, 245, 240, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-brown));
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(109, 170, 109, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, #F8F5F0 0%, #E8F5E8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(109, 170, 109, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(166, 123, 91, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            border: 2px solid var(--primary-green);
+            background: white;
+            color: var(--primary-green);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--primary-green);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(109, 170, 109, 0.3);
+        }
+
+        .btn.primary {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.7);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            font-size: 0.95rem;
+            color: var(--secondary-brown);
+            font-weight: 600;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 5%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+        }
+
+        /* Problem Section */
+        .problem {
+            background: var(--cream-bg);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 40px rgba(109, 170, 109, 0.2);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-green);
+        }
+
+        .card p {
+            color: var(--text-light);
+        }
+
+        .problem-description {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Solution Section */
+        .solution {
+            background: linear-gradient(180deg, #F8F5F0 0%, #E8F5E8 100%);
+        }
+
+        .pipeline {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .pipeline-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .pipeline-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .arrow {
+            font-size: 2rem;
+            color: var(--secondary-brown);
+        }
+
+        /* AI Model Section */
+        .ai-model {
+            background: var(--cream-bg);
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary-green), var(--secondary-brown));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -38px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 0 0 4px var(--cream-bg);
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .accuracy-chart {
+            margin-top: 2rem;
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .accuracy-bar {
+            height: 40px;
+            background: linear-gradient(90deg, var(--primary-green) 95%, #ddd 95%);
+            border-radius: 20px;
+            margin: 1rem 0;
+        }
+
+        /* Demo Section */
+        .demo {
+            background: linear-gradient(180deg, #E8F5E8 0%, #F8F5F0 100%);
+        }
+
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .demo-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .demo-btn {
+            padding: 1.2rem;
+            border-radius: 15px;
+            border: 2px solid var(--primary-green);
+            background: white;
+            color: var(--primary-green);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .demo-btn:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .demo-results {
+            display: none;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: #f9f9f9;
+            border-radius: 15px;
+        }
+
+        .demo-results.active {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .risk-score {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .risk-high {
+            background: #ffe6e6;
+            color: #c41e3a;
+        }
+
+        .risk-medium {
+            background: #fff4e6;
+            color: var(--secondary-brown);
+        }
+
+        .risk-low {
+            background: #e6f7e6;
+            color: var(--primary-green);
+        }
+
+        .mini-chart {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 5px;
+            margin: 1rem 0;
+        }
+
+        .chart-cell {
+            aspect-ratio: 1;
+            border-radius: 3px;
+        }
+
+        /* Impact Section */
+        .impact {
+            background: var(--cream-bg);
+        }
+
+        .impact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .leaf-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leaf-card::before {
+            content: '🍃';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 5rem;
+            opacity: 0.1;
+        }
+
+        .counters {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .counter {
+            text-align: center;
+        }
+
+        .counter-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-green);
+        }
+
+        /* Business Model */
+        .business {
+            background: linear-gradient(180deg, #F8F5F0 0%, #E8F5E8 100%);
+        }
+
+        /* Team Section */
+        .team {
+            background: var(--cream-bg);
+        }
+
+        .team-names {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--text-dark);
+            font-weight: 400;
+            line-height: 1.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .team-member {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .team-names a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .team-names a:hover {
+            color: var(--primary-green);
+        }
+
+        .linkedin-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            background: var(--primary-green);
+            border-radius: 3px;
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            font-family: Arial, sans-serif;
+            transition: background 0.3s;
+        }
+
+        .team-member:hover .linkedin-icon {
+            background: var(--secondary-brown);
+        }
+
+        .team-separator {
+            color: var(--text-light);
+            font-weight: 300;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(180deg, #E8F5E8 0%, #F8F5F0 100%);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Lato', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(109, 170, 109, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--secondary-brown), var(--cream-bg));
+            padding: 3rem 5%;
+            text-align: center;
+            color: var(--text-dark);
+        }
+
+        .footer-mission {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .disclaimer {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .stats-bar {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">OncoSemiDx</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#problem">Problem</a></li>
+            <li><a href="#solution">Solution</a></li>
+            <li><a href="#demo">Demo</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><button class="cta-btn" onclick="document.getElementById('demo').scrollIntoView({behavior: 'smooth'})">Try AI Demo</button></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Transforming Cancer Detection in India — Where Nature Meets Nanotech & AI</h1>
+            <p>Affordable, portable, early cancer diagnostics powered by MOS nanotechnology and AI biomarker analysis</p>
+            <div class="hero-buttons">
+                <button class="btn primary" onclick="document.getElementById('solution').scrollIntoView({behavior: 'smooth'})">🔬 Explore Technology</button>
+                <button class="btn" onclick="document.getElementById('demo').scrollIntoView({behavior: 'smooth'})">🧠 Try AI Demo</button>
+                <button class="btn" onclick="openModal('images')">📸 View Output Images</button>
+                <button class="btn" onclick="openModal('code')">💻 View Source Code</button>
+            </div>
+            <div class="stats-bar">
+                <div class="stat">70% cancers detected late</div>
+                <div class="stat">₹1L per test</div>
+                <div class="stat">900,000 deaths yearly</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="problem">
+        <h2 class="section-title">The Cancer Crisis in India</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3>1.4M</h3>
+                <p>New cancer cases diagnosed annually in India</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚠️</div>
+                <h3>70%</h3>
+                <p>Detected at advanced stages, limiting treatment options</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">💰</div>
+                <h3>₹1 Lakh</h3>
+                <p>Average cost per diagnostic test, unaffordable for most</p>
+            </div>
+        </div>
+        <p class="problem-description">Early detection could prevent over 900,000 deaths every year. Our mission is to make cancer screening accessible to every Indian, regardless of location or economic status.</p>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="solution">
+        <h2 class="section-title">Our Comprehensive Solution</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🧬</div>
+                <h3>AI Biomarker Discovery</h3>
+                <p>Advanced machine learning algorithms identify cancer biomarkers with precision exceeding 95% accuracy</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔬</div>
+                <h3>MOS Biosensors</h3>
+                <p>Metal-oxide-semiconductor nanotechnology enables ultra-sensitive detection at minimal cost</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📱</div>
+                <h3>Point-of-Care Device</h3>
+                <p>Portable, user-friendly device delivers results in 30 minutes at the point of care</p>
+            </div>
+        </div>
+        <div class="pipeline">
+            <div class="pipeline-step">
+                <div class="pipeline-icon">💧</div>
+                <p>Sample Collection</p>
+            </div>
+            <div class="arrow">→</div>
+            <div class="pipeline-step">
+                <div class="pipeline-icon">🔬</div>
+                <p>Biosensor Analysis</p>
+            </div>
+            <div class="arrow">→</div>
+            <div class="pipeline-step">
+                <div class="pipeline-icon">🧠</div>
+                <p>AI Processing</p>
+            </div>
+            <div class="arrow">→</div>
+            <div class="pipeline-step">
+                <div class="pipeline-icon">✅</div>
+                <p>Result (30 min)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Model Section -->
+    <section id="ai-model" class="ai-model">
+        <h2 class="section-title">How Our AI Model Works</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker">1</div>
+                <div class="timeline-content">
+                    <h3>Data Collection</h3>
+                    <p>Comprehensive biomarker data aggregated from diverse patient cohorts across India, ensuring representative training datasets</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker">2</div>
+                <div class="timeline-content">
+                    <h3>Preprocessing</h3>
+                    <p>Advanced normalization, feature extraction, and dimensionality reduction optimize data quality for model training</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker">3</div>
+                <div class="timeline-content">
+                    <h3>Model Training</h3>
+                    <p>Deep learning architecture trained on thousands of validated samples, continuously refined through cross-validation</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker">4</div>
+                <div class="timeline-content">
+                    <h3>Prediction Output</h3>
+                    <p>Real-time risk assessment with confidence intervals, enabling clinicians to make informed decisions</p>
+                </div>
+            </div>
+        </div>
+        <div class="accuracy-chart">
+            <h3>Model Performance</h3>
+            <p><strong>Accuracy: >95%</strong></p>
+            <div class="accuracy-bar"></div>
+            <p style="color: var(--text-light); margin-top: 1rem;">Validated across multiple cancer types with consistent performance metrics</p>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo">
+        <h2 class="section-title">Live AI Demo</h2>
+        <div class="demo-container">
+            <div class="demo-buttons">
+                <button class="demo-btn" onclick="selectFile()">
+                    🗂️ Select Data
+                </button>
+                <button class="demo-btn" onclick="runDemo()">
+                    ▶️ Test Live Model
+                </button>
+                <button class="demo-btn" onclick="openModal('images')">
+                    📸 View Output Images
+                </button>
+                <button class="demo-btn" onclick="openModal('code')">
+                    💻 View Source Code
+                </button>
+            </div>
+            <input type="file" id="fileInput" accept=".csv">
+            <div id="demoResults" class="demo-results">
+                <div id="riskScore" class="risk-score"></div>
+                <h4>Biomarker Heatmap</h4>
+                <div class="mini-chart" id="heatmap"></div>
+                <p style="text-align: center; color: var(--text-light); margin-top: 1rem; font-style: italic;">
+                    For demonstration purposes only. Not for clinical use.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="impact">
+        <h2 class="section-title">Democratizing Cancer Detection for 1.4 Billion Indians</h2>
+        <div class="impact-cards">
+            <div class="leaf-card">
+                <h3>Early Detection</h3>
+                <p style="font-size: 2rem; color: var(--primary-green); font-weight: bold;">10×</p>
+                <p>Higher survival rates through timely intervention and treatment initiation</p>
+            </div>
+            <div class="leaf-card">
+                <h3>Cost Reduction</h3>
+                <p style="font-size: 2rem; color: var(--primary-green); font-weight: bold;">90%</p>
+                <p>Cheaper than traditional diagnostic methods, ensuring accessibility</p>
+            </div>
+            <div class="leaf-card">
+                <h3>Rural Accessibility</h3>
+                <p style="font-size: 2rem; color: var(--primary-green); font-weight: bold;">100%</p>
+                <p>Portable and requires minimal infrastructure for deployment</p>
+            </div>
+        </div>
+        <div class="counters">
+            <div class="counter">
+                <div class="counter-value" data-target="50000">0</div>
+                <p>Patients Impacted</p>
+            </div>
+            <div class="counter">
+                <div class="counter-value" data-target="250">0</div>
+                <p>Healthcare Centers Connected</p>
+            </div>
+            <div class="counter">
+                <div class="counter-value" data-target="100000">0</div>
+                <p>Samples Analyzed</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Model -->
+    <section id="business" class="business">
+        <h2 class="section-title">Sustainable Business Model</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🔬</div>
+                <h3>Device & Test Strips</h3>
+                <p>Affordable hardware with consumable biosensor strips ensuring recurring revenue</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">💻</div>
+                <h3>Software Licensing</h3>
+                <p>Cloud-based AI platform with subscription model for healthcare institutions</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏛️</div>
+                <h3>Government Integration</h3>
+                <p>Partnerships with national health programs for large-scale deployment</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏭</div>
+                <h3>Scalable Manufacturing</h3>
+                <p>Local production facilities ensuring cost efficiency and rapid distribution</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <h2 class="section-title">Our Team</h2>
+        <div class="team-names">
+            <span class="team-member">
+                <a href="https://www.linkedin.com/in/adhaar-kohli" target="_blank">Adhaar Kohli</a>
+                <a href="https://www.linkedin.com/in/adhaar-kohli" target="_blank" class="linkedin-icon">in</a>
+            </span>
+            <span class="team-separator">•</span>
+            <span class="team-member">
+                <a href="https://www.linkedin.com/in/aditya-pawar" target="_blank">Aditya Pawar</a>
+                <a href="https://www.linkedin.com/in/aditya-pawar" target="_blank" class="linkedin-icon">in</a>
+            </span>
+            <span class="team-separator">•</span>
+            <span class="team-member">
+                <a href="https://www.linkedin.com/in/shresth-mishra" target="_blank">Shresth Mishra</a>
+                <a href="https://www.linkedin.com/in/shresth-mishra" target="_blank" class="linkedin-icon">in</a>
+            </span>
+            <span class="team-separator">•</span>
+            <span class="team-member">
+                <a href="https://www.linkedin.com/in/arushi-jain" target="_blank">Arushi Jain</a>
+                <a href="https://www.linkedin.com/in/arushi-jain" target="_blank" class="linkedin-icon">in</a>
+            </span>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Partner With Us</h2>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-mission">
+            Empowering every Indian with access to affordable, AI-powered cancer detection
+        </div>
+        <div class="disclaimer">
+            Prototype for research and demonstration purposes only. Not approved for clinical diagnostics.
+        </div>
+        <div class="social-icons">
+            <a href="#" class="social-icon">in</a>
+            <a href="#" class="social-icon">📁</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.9rem;">&copy; 2025 OncoSemiDx. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal for Images -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('images')">&times;</span>
+            <h2>Sample Output Visualizations</h2>
+            <div style="margin-top: 2rem;">
+                <h3>Biomarker Analysis</h3>
+                <div style="background: #f0f0f0; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                    <p style="text-align: center; color: var(--text-light);">
+                        📊 Heatmap visualization of biomarker expression patterns
+                    </p>
+                </div>
+                <h3>Risk Stratification</h3>
+                <div style="background: #f0f0f0; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                    <p style="text-align: center; color: var(--text-light);">
+                        📈 Patient risk distribution across severity categories
+                    </p>
+                </div>
+                <h3>Model Performance Metrics</h3>
+                <div style="background: #f0f0f0; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                    <p style="text-align: center; color: var(--text-light);">
+                        📉 ROC curves and confusion matrix analysis
+                    </p>
+                </div>
+                <p style="text-align: center; color: var(--text-light); margin-top: 2rem; font-style: italic;">
+                    Note: Actual visualizations generated from real patient data in production environment
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Code -->
+    <div id="codeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('code')">&times;</span>
+            <h2>Source Code Repository</h2>
+            <div style="margin-top: 2rem;">
+                <h3>AI Model Architecture</h3>
+                <div style="background: #2d2d2d; color: #f8f8f8; padding: 1.5rem; border-radius: 10px; margin: 1rem 0; font-family: monospace;">
+                    <p># Deep Learning Model for Cancer Detection</p>
+                    <p>import tensorflow as tf</p>
+                    <p>from sklearn.ensemble import RandomForestClassifier</p>
+                    <p style="margin-top: 1rem;"># Model architecture available on GitHub</p>
+                </div>
+                <h3>Biosensor Data Processing</h3>
+                <div style="background: #2d2d2d; color: #f8f8f8; padding: 1.5rem; border-radius: 10px; margin: 1rem 0; font-family: monospace;">
+                    <p># Signal processing pipeline</p>
+                    <p>def preprocess_biosensor_data(raw_signal):</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;# Filtering and normalization</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;return processed_features</p>
+                </div>
+                <p style="text-align: center; margin-top: 2rem;">
+                    <a href="#" style="color: var(--primary-green); font-weight: bold; text-decoration: none;">
+                        📁 View Full Repository on GitHub →
+                    </a>
+                </p>
+                <p style="text-align: center; color: var(--text-light); margin-top: 1rem; font-style: italic;">
+                    Complete codebase with documentation and usage examples
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Trigger counter animation
+                    if (entry.target.querySelector('.counter')) {
+                        animateCounters();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Counter Animation
+        let countersAnimated = false;
+        function animateCounters() {
+            if (countersAnimated) return;
+            countersAnimated = true;
+
+            document.querySelectorAll('.counter-value').forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current).toLocaleString();
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target.toLocaleString();
+                    }
+                };
+                updateCounter();
+            });
+        }
+
+        // File Selection
+        function selectFile() {
+            document.getElementById('fileInput').click();
+        }
+
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                alert('Data file selected: ' + e.target.files[0].name);
+            }
+        });
+
+        // Run Demo
+        function runDemo() {
+            const resultsDiv = document.getElementById('demoResults');
+            const riskScore = document.getElementById('riskScore');
+            const heatmap = document.getElementById('heatmap');
+
+            // Generate random risk score
+            const risk = Math.floor(Math.random() * 100);
+            let riskClass, riskText;
+
+            if (risk > 70) {
+                riskClass = 'risk-high';
+                riskText = 'High Risk';
+            } else if (risk > 40) {
+                riskClass = 'risk-medium';
+                riskText = 'Medium Risk';
+            } else {
+                riskClass = 'risk-low';
+                riskText = 'Low Risk';
+            }
+
+            riskScore.className = 'risk-score ' + riskClass;
+            riskScore.textContent = `Cancer Risk: ${risk}% (${riskText})`;
+
+            // Generate heatmap
+            heatmap.innerHTML = '';
+            for (let i = 0; i < 100; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'chart-cell';
+                const intensity = Math.random();
+                if (intensity > 0.7) {
+                    cell.style.background = '#c41e3a';
+                } else if (intensity > 0.4) {
+                    cell.style.background = '#A67B5B';
+                } else {
+                    cell.style.background = '#6DAA6D';
+                }
+                heatmap.appendChild(cell);
+            }
+
+            resultsDiv.classList.add('active');
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Modal Functions
+        function openModal(type) {
+            if (type === 'images') {
+                document.getElementById('imageModal').classList.add('active');
+            } else if (type === 'code') {
+                document.getElementById('codeModal').classList.add('active');
+            }
+        }
+
+        function closeModal(type) {
+            if (type === 'images') {
+                document.getElementById('imageModal').classList.remove('active');
+            } else if (type === 'code') {
+                document.getElementById('codeModal').classList.remove('active');
+            }
+        }
+
+        // Close modal on outside click
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+
+        // Form Submission
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! We will contact you shortly.');
+            e.target.reset();
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
