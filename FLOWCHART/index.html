@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Model Workflow for Cancer Detection</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Using Inter font, as per instructions */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb; /* Light gray background */
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        /* Custom styles for the flowchart elements */
+        .flow-step {
+            /* Formal and attractive card style */
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb; /* Subtle border */
+            border-left-width: 4px;
+            border-radius: 0.5rem; /* Rounded corners */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .flow-step:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .step-title {
+            font-weight: 600; /* Semibold */
+            color: #1f2937; /* Dark gray */
+            display: flex;
+            align-items: center;
+        }
+        
+        .step-number {
+            /* Circular number accent */
+            background-color: #115e59; /* Formal teal (from PPT idea) */
+            color: #ffffff;
+            font-weight: 700;
+            border-radius: 9999px; /* Full circle */
+            width: 2rem;
+            height: 2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            color: #4b5563; /* Medium gray */
+            font-size: 0.95rem;
+        }
+
+        .step-content strong {
+            color: #374151; /* Darker gray for emphasis */
+            font-weight: 600;
+        }
+
+        .arrow {
+            /* Clear visual connector */
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #9ca3af; /* Light gray arrow */
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="p-6 md:p-10">
+    <div class="max-w-3xl mx-auto">
+        <!-- Main Title -->
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">OncoSemiDx AI Model Workflow</h1>
+        <p class="text-xl text-center text-gray-600 mb-12">From Data Collection to Clinical Demonstration</p>
+
+        <!-- Flowchart container -->
+        <div class="flex flex-col items-center space-y-4">
+
+            <!-- Step 1: Data Collection -->
+            <div class="w-full flow-step" style="border-left-color: #0d9488;">
+                <div class="p-5">
+                    <div class="step-title mb-3">
+                        <span class="step-number">1</span>
+                        Data Collection & Preprocessing
+                    </div>
+                    <ul class="step-content list-disc list-inside pl-2 space-y-1">
+                        <li><strong>Source:</strong> Public genomic/microarray datasets (e.g., TCGA, GEO).</li>
+                        <li><strong>Process:</strong> Clean raw data, perform normalization (e.g., RSEM, FPKM).</li>
+                        <li><strong>Labeling:</strong> Annotate samples as 'Cancer' (LUAD, LUSC) vs. 'Healthy Control'.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="arrow">&darr;</div>
+
+            <!-- Step 2: Feature Extraction -->
+            <div class="w-full flow-step" style="border-left-color: #0f766e;">
+                <div class="p-5">
+                    <div class="step-title mb-3">
+                        <span class="step-number">2</span>
+                        Feature Extraction & Selection
+                    </div>
+                    <ul class="step-content list-disc list-inside pl-2 space-y-1">
+                        <li><strong>Goal:</strong> Identify significant gene expression biomarkers or mutation patterns.</li>
+                        <li><strong>Methods:</strong> Use techniques like PCA, t-SNE, or correlation-based feature selection to reduce dimensionality.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="arrow">&darr;</div>
+
+            <!-- Step 3: AI Model Training (with XGBoost) -->
+            <div class="w-full flow-step" style="border-left-color: #115e59;">
+                <div class="p-5">
+                    <div class="step-title mb-3">
+                        <span class="step-number">3</span>
+                        AI Model Training
+                    </div>
+                    <ul class="step-content list-disc list-inside pl-2 space-y-1">
+                        <li><strong>Input:</strong> Selected biomarker signals (gene expression levels).</li>
+                        <li><strong>Model:</strong> <strong>XGBoost (Extreme Gradient Boosting)</strong> implemented in R.</li>
+                        <li><strong>Output:</strong> Cancer probability score (0.0 – 1.0).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="arrow">&darr;</div>
+
+            <!-- Step 4: Model Evaluation (with 5-fold CV & user outputs) -->
+            <div class="w-full flow-step" style="border-left-color: #134e4a;">
+                <div class="p-5">
+                    <div class="step-title mb-3">
+                        <span class="step-number">4</span>
+                        Model Validation & Evaluation
+                    </div>
+                    <ul class="step-content list-disc list-inside pl-2 space-y-1">
+                        <li><strong>Validation Method:</strong> <strong>5-fold Cross-Validation</strong> for robust performance assessment.</li>
+                        <li><strong>Key Metrics:</strong> Accuracy, Sensitivity (Recall), Specificity, and AUC.</li>
+                        <li><strong>Result Visualization:</strong>
+                            <ul class="list-disc list-inside pl-6">
+                                <li><strong>ROC Curve:</strong> To visualize trade-off and model fidelity (AUC).</li>
+                                <li><strong>Pie Charts:</strong> To show class distribution (e.g., LUAD vs. LUSC) in datasets.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="arrow">&darr;</div>
+
+            <!-- Step 5: Integration -->
+            <div class="w-full flow-step" style="border-left-color: #1f2937;">
+                <div class="p-5">
+                    <div class="step-title mb-3">
+                        <span class="step-number">5</span>
+                        Integration & Simulation
+                    </div>
+                    <ul class="step-content list-disc list-inside pl-2 space-y-1">
+                        <li><strong>Score Conversion:</strong> Convert AI probability (0-1) into a clear diagnostic score.</li>
+                        <li><strong>Simulation:</strong> Simulate the AI score as an electronic signal reading from the MOS biosensor.</li>
+                        <li><strong>Linkage:</strong> Connect the model output to the website dashboard (via mock API or file).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="arrow">&darr;</div>
+
+            <!-- Step 6: Deployment (Demo) -->
+            <div class="w-full flow-step" style="border-left-color: #4b5563;">
+                <div class="p-5">
+                    <div class="step-title mb-3">
+                        <span class="step-number">6</span>
+                        Deployment (Technical Demo)
+                    </div>
+                    <ul class="step-content list-disc list-inside pl-2 space-y-1">
+                        <li><strong>Platform:</strong> Hosted demo (e.g., using Flask, Streamlit, or Shiny for R).</li>
+                        <li><strong>User Interaction:</strong> Judge/User uploads a CSV of mock genomic data.</li>
+                        <li><strong>Final Output:</strong> The web app displays a clear, instant result.
+                            <br>
+                            <strong class="pl-6">Example: “Cancer Risk: 82% (High)”</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div> <!-- /flex-col -->
+    </div> <!-- /max-w-3xl -->
+</body>
+</html>
