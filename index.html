@@ -785,7 +785,7 @@
                 <button class="btn primary" onclick="document.getElementById('solution').scrollIntoView({behavior: 'smooth'})">🔬 Explore Technology</button>
                 <button class="btn" onclick="document.getElementById('demo').scrollIntoView({behavior: 'smooth'})">🧠 Try AI Demo</button>
                 <button class="btn" onclick="openModal('images')">📸 View Output Images</button>
-                <button class="btn" onclick="openModal('code')">💻 View Source Code</button>
+                <button class="btn" onclick="window.open('https://www.kaggle.com/code/shresth115/oncosemidx?scriptVersionId=277065969', '_blank')">💻 View Source Code</button>
             </div>
             <div class="stats-bar">
                 <div class="stat">70% cancers detected late</div>
@@ -896,7 +896,7 @@
         </div>
         <div class="accuracy-chart">
             <h3>Model Performance</h3>
-            <p><strong>Accuracy: >95%</strong></p>
+            <p><strong>Accuracy: >92%</strong></p>
             <div class="accuracy-bar"></div>
             <p style="color: var(--text-light); margin-top: 1rem;">Validated across multiple cancer types with consistent performance metrics</p>
         </div>
@@ -907,27 +907,12 @@
         <h2 class="section-title">Live AI Demo</h2>
         <div class="demo-container">
             <div class="demo-buttons">
-                <button class="demo-btn" onclick="selectFile()">
-                    🗂️ Select Data
-                </button>
-                <button class="demo-btn" onclick="runDemo()">
-                    ▶️ Test Live Model
-                </button>
                 <button class="demo-btn" onclick="openModal('images')">
                     📸 View Output Images
                 </button>
-                <button class="demo-btn" onclick="openModal('code')">
+                <button class="demo-btn" onclick="window.open('https://www.kaggle.com/code/shresth115/oncosemidx?scriptVersionId=277065969', '_blank')">
                     💻 View Source Code
                 </button>
-            </div>
-            <input type="file" id="fileInput" accept=".csv">
-            <div id="demoResults" class="demo-results">
-                <div id="riskScore" class="risk-score"></div>
-                <h4>Biomarker Heatmap</h4>
-                <div class="mini-chart" id="heatmap"></div>
-                <p style="text-align: center; color: var(--text-light); margin-top: 1rem; font-style: italic;">
-                    For demonstration purposes only. Not for clinical use.
-                </p>
             </div>
         </div>
     </section>
@@ -1062,23 +1047,21 @@
             <span class="close-modal" onclick="closeModal('images')">&times;</span>
             <h2>Sample Output Visualizations</h2>
             <div style="margin-top: 2rem;">
-                <h3>Biomarker Analysis</h3>
-                <div style="background: #f0f0f0; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
-                    <p style="text-align: center; color: var(--text-light);">
-                        📊 Heatmap visualization of biomarker expression patterns
-                    </p>
+                <h3>Heatmap</h3>
+                <div style="background: #f0f0f0; padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                    <img src="heatmap.png" alt="Heatmap" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 8px;">
                 </div>
-                <h3>Risk Stratification</h3>
-                <div style="background: #f0f0f0; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
-                    <p style="text-align: center; color: var(--text-light);">
-                        📈 Patient risk distribution across severity categories
-                    </p>
+                <h3>ROC Curve</h3>
+                <div style="background: #f0f0f0; padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                    <img src="roc.png" alt="ROC Curve" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 8px;">
                 </div>
-                <h3>Model Performance Metrics</h3>
-                <div style="background: #f0f0f0; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
-                    <p style="text-align: center; color: var(--text-light);">
-                        📉 ROC curves and confusion matrix analysis
-                    </p>
+                <h3>XGBoost Tree</h3>
+                <div style="background: #f0f0f0; padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                    <img src="tree.png" alt="XGBoost Tree" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 8px;">
+                </div>
+                <h3>Peak Graph</h3>
+                <div style="background: #f0f0f0; padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                    <img src="peak_detection.png" alt="Peak Graph" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 8px;">
                 </div>
                 <p style="text-align: center; color: var(--text-light); margin-top: 2rem; font-style: italic;">
                     Note: Actual visualizations generated from real patient data in production environment
@@ -1096,20 +1079,18 @@
                 <h3>AI Model Architecture</h3>
                 <div style="background: #2d2d2d; color: #f8f8f8; padding: 1.5rem; border-radius: 10px; margin: 1rem 0; font-family: monospace;">
                     <p># Deep Learning Model for Cancer Detection</p>
-                    <p>import tensorflow as tf</p>
-                    <p>from sklearn.ensemble import RandomForestClassifier</p>
-                    <p style="margin-top: 1rem;"># Model architecture available on GitHub</p>
-                </div>
-                <h3>Biosensor Data Processing</h3>
-                <div style="background: #2d2d2d; color: #f8f8f8; padding: 1.5rem; border-radius: 10px; margin: 1rem 0; font-family: monospace;">
-                    <p># Signal processing pipeline</p>
-                    <p>def preprocess_biosensor_data(raw_signal):</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;# Filtering and normalization</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;return processed_features</p>
-                </div>
+                    <p>install.packages("readr")
+                        <br>install.packages("pROC")
+                       <br>install.packages("caret")</p>
+                    <p>library(readr)
+                        <br>library(xgboost)
+                        <br>library(pROC)
+                        <br>library(caret)</p>
+                    <p style="margin-top: 1rem;"># Model architecture available on Kaggle</p>
+                
                 <p style="text-align: center; margin-top: 2rem;">
                     <a href="#" style="color: var(--primary-green); font-weight: bold; text-decoration: none;">
-                        📁 View Full Repository on GitHub →
+                        📁 View Full Repository on Kaggle →
                     </a>
                 </p>
                 <p style="text-align: center; color: var(--text-light); margin-top: 1rem; font-style: italic;">
@@ -1182,43 +1163,8 @@
         // Run Demo
         function runDemo() {
             const resultsDiv = document.getElementById('demoResults');
-            const riskScore = document.getElementById('riskScore');
-            const heatmap = document.getElementById('heatmap');
-
-            // Generate random risk score
-            const risk = Math.floor(Math.random() * 100);
-            let riskClass, riskText;
-
-            if (risk > 70) {
-                riskClass = 'risk-high';
-                riskText = 'High Risk';
-            } else if (risk > 40) {
-                riskClass = 'risk-medium';
-                riskText = 'Medium Risk';
-            } else {
-                riskClass = 'risk-low';
-                riskText = 'Low Risk';
-            }
-
-            riskScore.className = 'risk-score ' + riskClass;
-            riskScore.textContent = `Cancer Risk: ${risk}% (${riskText})`;
-
-            // Generate heatmap
-            heatmap.innerHTML = '';
-            for (let i = 0; i < 100; i++) {
-                const cell = document.createElement('div');
-                cell.className = 'chart-cell';
-                const intensity = Math.random();
-                if (intensity > 0.7) {
-                    cell.style.background = '#c41e3a';
-                } else if (intensity > 0.4) {
-                    cell.style.background = '#A67B5B';
-                } else {
-                    cell.style.background = '#6DAA6D';
-                }
-                heatmap.appendChild(cell);
-            }
-
+            
+            // Simply show the results div with heatmap.png
             resultsDiv.classList.add('active');
             resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
